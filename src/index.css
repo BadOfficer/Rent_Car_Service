@@ -1,13 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-family: "Roboto", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+.select {
+  width: fit-content;
+  color: #4f4f51;
+  border-radius: 10px;
+  position: relative;
+}
+.select ul {
+  list-style: none;
+  margin: 0;
+}
+.select_value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #dadbdf;
+  padding: 7px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.select_value span {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+.select_dropdown {
+  padding: 0;
+  border: 3px solid #dadbdf;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  border-radius: 0 0 10px 10px;
+  background-color: #fff;
+  right: 0;
+}
+.select_option {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px 0;
+}
+.select_option:hover {
+  color: #fff;
+  background-color: #dadbdf;
+}
+.select.active .select_value {
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.rent-button {
+  width: 100%;
+  padding: 10px 0;
+  background: linear-gradient(90deg, #6466c3, #9496de);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+  position: relative;
+  font-size: 16px;
+}
+.rent-button span:first-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.rent-button span:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: #c9cbfb;
+  width: fit-content;
+  float: right;
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.cars_list-title {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  flex-grow: 1;
+}
+.cars_list-title span {
+  font-size: 15px;
+  color: #dadbdf;
+}
+.cars_list-control {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.cars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 55px;
+}
+
+.button {
+  background: none;
+  outline: none;
+  border: 3px solid #dadbdf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 7px;
+  color: #4f4f51;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.cart_bought {
+  position: absolute;
+  top: -25%;
+  right: -25%;
+  display: block;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f79761;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  z-index: 10;
+}
+.button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  background-color: #dadbdf;
+  z-index: -1;
+  transition: 0.5s;
+}
+.cart_container {
+  position: relative;
+}
+.button:hover::after {
+  left: 0;
+  right: 0;
+}
+
+.car {
+  max-width: 300px;
+  background-color: #f8f8fa;
+  border-radius: 10px;
+  padding: 15px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.car.active {
+  outline: 3px solid #6466c3;
+}
+.car_title {
+  font-size: 20px;
+}
+.car_price {
+  display: flex;
+  font-size: 25px;
+}
+.car_price span {
+  font-size: 15px;
+}
+.car_price span:last-child {
+  color: #4f4f51;
+  align-self: flex-end;
+}
+.car_price b {
+  padding: 0 5px;
+}
+.car_img-container {
+  height: 145px;
+  display: flex;
+  align-items: flex-end;
+}
+.car_img {
+  max-width: 300px;
+  align-self: flex-end;
+}
+.car_specs {
+  display: flex;
+  justify-content: space-around;
+  height: fit-content;
+}
+.car_specs p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #4f4f51;
+}
+
+.cart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  min-width: 300px;
+  background-color: #fff;
+  padding: 20px 50px;
+  border-radius: 10px;
+}
+.cart_title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 3px solid #dadbdf;
+  color: #4f4f51;
+}
+.cart_title h4 {
+  margin: 0;
+}
+.cart_option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 3px solid #dadbdf;
+}
+.cart_option img {
+  max-width: 100px;
+  height: auto;
+}
+.cart_option h5 {
+  font-size: 16px;
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: #4f4f51;
+  opacity: 50%;
+}
+.cart .rent-button {
+  margin-top: 15px;
+}
+.cart_close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 18px;
+  color: red;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.cart_empty {
+  color: red;
+  text-align: center;
+  font-size: 20px;
+}
+
+.add-car_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  height: 100%;
+  background-color: #fff;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 35px;
+}
+.add-car_form h4 {
+  font-size: 25px;
+  margin: 15px 0;
+  text-align: center;
+  color: #6466c3;
+}
+.add-car_form label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.add-car_form input {
+  border: 3px solid #dadbdf;
+  font-size: 16px;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+.add-car_form input:focus,
+.add-car_form input:hover {
+  outline: none;
+}
+.add-button {
+  margin-top: 25px;
+  background: linear-gradient(90deg, #6466c3, #9496de);
+  color: #fff;
+  border: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.budget {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 7px 15px;
+  border: 3px solid #dadbdf;
+  margin-right: 15px;
+  border-radius: 10px;
+}
+.budget span {
+  display: block;
+  padding-left: 10px;
 }
